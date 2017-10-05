@@ -1,7 +1,7 @@
 
 var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, '.tmp/public');
+var BUILD_DIR = path.resolve(__dirname, './assets/dist');
 
 var config = {
   entry: './client/src/index.js',

@@ -32,7 +32,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
+  'get /api/users': 'UsersController.get',
+
+  '/*': {
+    skipAssets: true,
     view: 'index'
   }
 

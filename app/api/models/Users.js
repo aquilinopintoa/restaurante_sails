@@ -13,7 +13,8 @@ module.exports = {
     },
     email: {
       type: 'email',
-      required: true
+      required: true, 
+      unique: true
     },
     password: {
       type: 'string',
@@ -28,6 +29,28 @@ module.exports = {
       ],
       required: true
     }
+  },
+  
+  loadDefault: function(cb){
+    
+    if(!cb){
+      cb = () => {}
+    }
+
+    const userData = {
+      email: 'aquilinopintoa@gmail.com',
+      password: '20220546',
+      rol: 'CHEF'
+    }
+
+    Users.findOrCreate(userData, userData, function(err, user){
+      if(err){
+        console.log(err)
+        return cb(err)
+      }
+
+      return cb(undefined, user)
+    })
   }
 
 };
