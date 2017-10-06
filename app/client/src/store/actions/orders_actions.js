@@ -15,6 +15,7 @@ ordenesActions.getAll = () => ({ axios }) => async dispatch => {
 
 ordenesActions.create = data => ({ axios }) => async dispatch => {
   const response = await axios.post('/api/ordenes', data)
+  console.log(response.data)
   dispatch(ordenesActions.add(response.data))
 }
 

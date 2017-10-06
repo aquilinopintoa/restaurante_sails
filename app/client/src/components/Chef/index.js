@@ -12,6 +12,7 @@ class Chef extends Component {
       <div>
           <h1 className="App-title">Chef</h1>
           {this.props.orders.map(order => {
+            console.log(order.id)
             return <div key={order.id}>{order.client_name}</div>
           })}
       </div>

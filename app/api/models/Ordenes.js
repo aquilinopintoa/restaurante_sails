@@ -14,8 +14,7 @@ module.exports = {
     },
     client_name: {
       type: 'string',
-      required: true, 
-      unique: true
+      required: true,
     },
     type_payment: {
       type: 'string',

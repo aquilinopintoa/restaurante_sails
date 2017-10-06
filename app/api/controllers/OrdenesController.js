@@ -34,7 +34,7 @@ module.exports = {
                 const salida = orden.toJSON()
                 salida.platos = params.platos
 
-                return res.json({orden: salida})
+                return res.json(salida)
             })
         })
     },

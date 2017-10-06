@@ -15,9 +15,10 @@ export default class CreatorOrders extends Component {
     await this.props.createOrder(this.state.newOrder)
     this.setState({
         newOrder: { 
-            platos: [],
-            client_name: '',
-            total: 0
+          platos: [1,2],
+          client_name: '',
+          type_payment: 'TDC',
+          total: 100.0
         },
     })
   }
