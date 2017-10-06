@@ -8,5 +8,5 @@ export default combineReducers({
   routing: routerReducer,
   users: usersReducer,
   platos: platosReducer,
-  ordenes: ordenesReducer
+  orders: ordenesReducer
 })

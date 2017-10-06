@@ -13,7 +13,7 @@ module.exports = {
       primaryKey: true
     },
     client_name: {
-      type: 'email',
+      type: 'string',
       required: true, 
       unique: true
     },
@@ -25,13 +25,17 @@ module.exports = {
       ],
       required: true
     },
-    estado: {
+    state: {
       type: 'string',
       enum: [
         'COMANDA',
         'TERMINADO',
         'EN PROCESO'
       ],
+      required: true
+    },
+    total:{
+      type: 'float',
       required: true
     }
   }

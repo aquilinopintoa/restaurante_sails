@@ -9,19 +9,20 @@ module.exports = {
 
     create: function(req, res){
         const params = req.params.all()
+        params.state = 'COMANDA'
         Ordenes.create(params, function(err, orden){
             if(err){
                 console.log(err)
                 return res.json(err)
             }
 
-            const orden_plato = []
+            let orden_plato = []
 
             params.platos.forEach(function(plato){
-                orden_plato = {
+                orden_plato.push({
                     plato: plato,
                     orden: orden.id
-                }
+                })
             })
 
             Ordenesplatos.createEach(orden_plato, function(err, news){

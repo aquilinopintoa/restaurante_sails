@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { build, actions } from '../../container_helpers'
 
+import CreatorOrders from '../CreatorOrders'
+
 class Cajero extends Component {
 
   async componentWillMount() {
@@ -14,6 +16,8 @@ class Cajero extends Component {
           {this.props.platos.map(plato => {
             return <div key={plato.id}>{plato.name}</div>
           })}
+
+          <CreatorOrders/>
       </div>
     );
   }
