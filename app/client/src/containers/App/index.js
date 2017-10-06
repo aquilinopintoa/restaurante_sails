@@ -17,13 +17,25 @@ import Signin from '../../components/Signin'
 
 import store from '../../store'
 
+function loggedIn() {
+  return true
+}
+
+function requireAuth(nextState, replace) {
+  if (!loggedIn()) {
+    replace({
+      pathname: '/signin'
+    })
+  }
+}
+
 export default class App extends Component {
   render() {
     const history = syncHistoryWithStore(browserHistory, store)
     return (
       <Provider store={store}>
         <Router history={history}>
-          <Route path="/app" component={Layout}>
+          <Route path="/app" component={Layout} onEnter={requireAuth}>
             <IndexRoute name="home" component={Home} />
             <Route
               name="cajero"
@@ -42,8 +54,9 @@ export default class App extends Component {
             />
           </Route>
           <Route path="/" component={Layout}>
-            <IndexRoute
-              name="sigin"
+            <Route
+              name="signin"
+              path="/signin"
               component={Signin}
             />
           </Route>
