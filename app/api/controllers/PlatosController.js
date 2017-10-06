@@ -12,7 +12,7 @@ module.exports = {
         Platos.find().exec(function(err, platos){
             if(err){
                 console.log(err)
-                return res.json(err)
+                return res.json({error: err})
             }
 
             return res.json(platos)

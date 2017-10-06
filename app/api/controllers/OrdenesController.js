@@ -13,7 +13,7 @@ module.exports = {
         Ordenes.create(params, function(err, orden){
             if(err){
                 console.log(err)
-                return res.json(err)
+                return res.json({error: err})
             }
 
             let orden_plato = []
@@ -28,7 +28,7 @@ module.exports = {
             Ordenesplatos.createEach(orden_plato, function(err, news){
                 if(err){
                     console.log(err)
-                    return res.json(err)
+                    return res.json({error: err})
                 }
 
                 const salida = orden.toJSON()
@@ -44,13 +44,13 @@ module.exports = {
         Ordenes.find().exec(function(err, ordenes){
             if(err){
                 console.log(err)
-                return res.json(err)
+                return res.json({error: err})
             }
 
             Ordenesplatos.find().exec(function(err, rels){
                 if(err){
                     console.log(err)
-                    return res.json(err)
+                    return res.json({error: err})
                 }
                 
                 // performance -1 (time)
@@ -70,7 +70,37 @@ module.exports = {
     },
 
     update: function(req, res){
-        console.log("falta implementar")
+        
+        const params = req.params.all()
+        Ordenes.update({id: params.id}, {state:params.state}, function(err, ordenes){
+            if(err){
+                console.log(err)
+                return res.json({error: err})
+            }
+            
+            let orden = undefined
+            
+            if(ordenes.length === 0)
+                return res.json(orden)
+            
+            orden = ordenes[0]
+
+            Ordenesplatos.find({orden: orden.id})
+            .exec(function(err, rels){
+                if(err){
+                    console.log(err)
+                    return res.json({error: err})
+                }
+                
+                orden.platos = []
+                
+                rels.forEach(function(rel){
+                    orden.platos.push(rel.plato)
+                })
+
+                return res.json(orden)
+            })
+        })
     }
 	
 };

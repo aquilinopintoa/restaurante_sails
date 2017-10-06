@@ -5,10 +5,6 @@ import CreatorOrders from '../CreatorOrders'
 
 class Cajero extends Component {
 
-  async componentWillMount() {
-    await this.props.getAllPlatos()
-  }
-
   render() {
     return (
       <div>

@@ -8,7 +8,8 @@ const { platos: platosActions } = createActions({
 
 platosActions.getAll = () => ({ axios }) => async dispatch => {
   const response = await axios.get('/api/platos')
-  dispatch(platosActions.get(response.data))
+  if (response.data.error) console.log(response.data.error) 
+  else dispatch(platosActions.get(response.data))
 }
 
 export default platosActions
