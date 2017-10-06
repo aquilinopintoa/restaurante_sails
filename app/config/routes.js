@@ -40,9 +40,18 @@ module.exports.routes = {
 
   'get /api/platos': 'PlatosController.get',
 
+  'post /login': 'UsersController.login',
+  
+  '/app/*': {
+    skipAssets: true,
+    controller: 'HomeController',
+    action: 'app'
+  },
+  
   '/*': {
     skipAssets: true,
-    view: 'index'
+    controller: 'HomeController',
+    action: 'index'
   }
 
   /***************************************************************************

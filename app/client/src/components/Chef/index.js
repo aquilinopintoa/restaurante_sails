@@ -96,7 +96,7 @@ class Chef extends Component {
               height={"300px"}>
               <TableHeader>
                 <TableRow>
-                  <TableHeaderColumn>ID</TableHeaderColumn>
+                  <TableHeaderColumn>Total</TableHeaderColumn>
                   <TableHeaderColumn>Client Name</TableHeaderColumn>
                   <TableHeaderColumn>Status</TableHeaderColumn>
                   <TableHeaderColumn>Date</TableHeaderColumn>
@@ -113,7 +113,7 @@ class Chef extends Component {
                         selectable = {order.state !== "TERMINADO"}
                         selected={this.isSelected(index)}
                       >
-                        <TableRowColumn>{order.id}</TableRowColumn>
+                        <TableRowColumn>{order.total+" $"}</TableRowColumn>
                         <TableRowColumn>{order.client_name}</TableRowColumn>
                         <TableRowColumn>{this.getFormat(order.createdAt)}</TableRowColumn>
                         <TableRowColumn>{order.state}</TableRowColumn>
@@ -155,7 +155,12 @@ class Chef extends Component {
             
               <CardActions>
                 <FlatButton label="TERMINADO" onClick={()=> this.updateOrder("TERMINADO")}/>
-                <FlatButton label="EN PROCESO" onClick={()=> this.updateOrder("EN PROCESO")}/>
+                { 
+                  this.state.selectedOrder.state !== "EN PROCESO" ? 
+                    <FlatButton label="EN PROCESO" onClick={()=> this.updateOrder("EN PROCESO")}/>
+                    :
+                    null
+                }
               </CardActions>
             </Card>
             :

@@ -9,6 +9,7 @@ import {
 } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import Layout from '../../components/Layout'
+import LayoutOutApp from '../../components/LayoutOutApp'
 import Home from '../../components/Home'
 import Cajero from '../../components/Cajero'
 import Admin from '../../components/Admin'
@@ -53,10 +54,9 @@ export default class App extends Component {
               component={Admin}
             />
           </Route>
-          <Route path="/" component={Layout}>
-            <Route
+          <Route path="/" component={LayoutOutApp}>
+            <IndexRoute
               name="signin"
-              path="/signin"
               component={Signin}
             />
           </Route>

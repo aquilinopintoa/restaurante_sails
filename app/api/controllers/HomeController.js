@@ -8,7 +8,10 @@
 module.exports = {
   
     index: function(req, res){
-      console.log("hola", req.url)
+      return res.view('index')
+    },
+
+    app: function(req, res){
       return res.view('index')
     }
     

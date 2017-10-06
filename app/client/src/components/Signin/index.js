@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import Signin from './Signin'
+import { build, actions } from '../../container_helpers'
 
-class Signin extends Component {
-  render() {
-    return (
-      <div>
-          <h1 className="App-title">Signin</h1>
-      </div>
-    );
-  }
+const mapDispatchToProps = {
+  login: actions.auth.login
 }
 
-export default Signin;
+const mapStateToProps = state => {
+  return {}
+}
+
+export default build({
+  component: Signin,
+  mapDispatchToProps,
+  mapStateToProps,
+})

@@ -1,3 +1,4 @@
+import authentication_actions from './authentication_actions'
 import users_actions from './users_actions'
 import platos_actions from './platos_actions'
 import orders_actions from './orders_actions'
@@ -8,7 +9,8 @@ import orders_actions from './orders_actions'
 const actions = {
     users: users_actions,
     platos: platos_actions,
-    orders: orders_actions
+    orders: orders_actions,
+    auth: authentication_actions
 }
 
 export default actions
