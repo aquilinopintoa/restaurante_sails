@@ -1,4 +1,5 @@
-{
+{ 
+  "plugins": ["transform-regenerator"],
   "presets" : ["es2015", "es2017", "react"],
   "sourceMaps" : "inline"
 }

@@ -34,6 +34,12 @@ module.exports.routes = {
 
   'get /api/users': 'UsersController.get',
 
+  'get /api/ordenes': 'OrdenesController.get',
+  'put /api/ordenes': 'OrdenesController.update',
+  'post /api/ordenes': 'OrdenesController.create',
+
+  'get /api/platos': 'PlatosController.get',
+
   '/*': {
     skipAssets: true,
     view: 'index'

@@ -11,8 +11,9 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import Layout from '../../components/Layout'
 import Home from '../../components/Home'
 import Cajero from '../../components/Cajero'
-import Mesonero from '../../components/Mesonero'
+import Admin from '../../components/Admin'
 import Chef from '../../components/Chef'
+import Signin from '../../components/Signin'
 
 import store from '../../store'
 
@@ -22,22 +23,28 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <Route path="/" component={Layout}>
+          <Route path="/app" component={Layout}>
             <IndexRoute name="home" component={Home} />
             <Route
               name="cajero"
-              path="/cajero"
+              path="/app/cajero"
               component={Cajero}
             />
             <Route
-              name="mesero"
-              path="/mesero"
-              component={Mesonero}
+              name="chef"
+              path="/app/chef"
+              component={Chef}
             />
             <Route
-              name="chef"
-              path="/chef"
-              component={Chef}
+              name="admin"
+              path="/app/admin"
+              component={Admin}
+            />
+          </Route>
+          <Route path="/" component={Layout}>
+            <IndexRoute
+              name="sigin"
+              component={Signin}
             />
           </Route>
           <Redirect from="*" to="/" />

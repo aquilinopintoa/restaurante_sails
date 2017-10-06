@@ -8,7 +8,6 @@
 module.exports = {
 
   get: function(req, res){
-    console.log("hola")
     Users.find(req.query, function(err, users){
       if(err){
         console.log(err)

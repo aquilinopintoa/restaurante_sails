@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 
-//export actions from './store/actions'
+import Actions from './store/actions'
+
+export const actions = Actions 
 
 export function build({
   component,

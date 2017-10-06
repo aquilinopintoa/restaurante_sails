@@ -1,5 +1,5 @@
 /**
- * Users.js
+ * Ordenes.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -12,47 +12,28 @@ module.exports = {
       autoIncrement: true,
       primaryKey: true
     },
-    email: {
+    client_name: {
       type: 'email',
       required: true, 
       unique: true
     },
-    password: {
-      type: 'string',
-      required: true
-    },
-    rol: {
+    type_payment: {
       type: 'string',
       enum: [
-        'CAJERO',
-        'CHEF',
-        'MESONERO'
+        'TDC',
+        'EFECTIVO'
+      ],
+      required: true
+    },
+    estado: {
+      type: 'string',
+      enum: [
+        'COMANDA',
+        'TERMINADO',
+        'EN PROCESO'
       ],
       required: true
     }
-  },
-  
-  loadDefault: function(cb){
-    
-    if(!cb){
-      cb = () => {}
-    }
-
-    const userData = {
-      email: 'aquilinopintoa@gmail.com',
-      password: '20220546',
-      rol: 'CHEF'
-    }
-
-    Users.findOrCreate(userData, userData, function(err, user){
-      if(err){
-        console.log(err)
-        return cb(err)
-      }
-
-      return cb(undefined, user)
-    })
   }
-
 };
 

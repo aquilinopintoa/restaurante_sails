@@ -9,13 +9,13 @@ class MainMenu extends Component {
         <div className="row">
           <div>
             <ul>
-              <LinkMenu to={''} itemName={'Home'} />
-              <LinkMenu to={'mesero'} itemName={'Mesero'} />
-              <LinkMenu to={'chef'} itemName={'Chef'} />
+              <LinkMenu to={'app'} itemName={'Home'} />
+              <LinkMenu to={'app/chef'} itemName={'Chef'} />
               <LinkMenu
-                to={'cajero'}
+                to={'app/cajero'}
                 itemName={'Cajero'}
               />
+              <LinkMenu to={'app/admin'} itemName={'Admin'} />
             </ul>
           </div>
         </div>

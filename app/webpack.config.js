@@ -4,7 +4,7 @@ var path = require('path');
 var BUILD_DIR = path.resolve(__dirname, './assets/dist');
 
 var config = {
-  entry: './client/src/index.js',
+  entry: ['babel-polyfill','./client/src/index.js'],
   output: {
     path: BUILD_DIR,
     publicPath: '/assets/',
