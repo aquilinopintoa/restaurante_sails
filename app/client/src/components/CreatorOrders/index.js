@@ -3,6 +3,7 @@ import { build, actions } from '../../container_helpers'
 
 const mapDispatchToProps = {
   createOrder: actions.orders.create,
+  getAllPlatos: actions.platos.getAll,
 }
 
 const mapStateToProps = state => {

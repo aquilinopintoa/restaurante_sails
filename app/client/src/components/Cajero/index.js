@@ -1,36 +1,41 @@
 import React, { Component } from 'react';
+import {
+  Card, 
+  CardActions, 
+  CardHeader, 
+  CardMedia, 
+  CardTitle, 
+  CardText
+} from 'material-ui/Card'
 import { build, actions } from '../../container_helpers'
 
 import CreatorOrders from '../CreatorOrders'
 
 class Cajero extends Component {
-
   render() {
+    const styles = {
+      content: {
+        display: 'flex'
+      },
+      form:{
+        width: "50%",
+        margin: "auto"
+      }
+    }
     return (
-      <div>
-          <h1 className="App-title">Cajero</h1>
-          {this.props.platos.map(plato => {
-            return <div key={plato.id}>{plato.name}</div>
-          })}
-
-          <CreatorOrders/>
+      <div style={styles.content}>
+          <Card style={styles.form}>
+            <CardHeader
+              title="Order Register"
+              subtitle="Subtitle"
+            />
+            <CardText>
+              <CreatorOrders/>
+            </CardText>
+          </Card>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = {
-  getAllPlatos: actions.platos.getAll,
-}
-
-const mapStateToProps = state => {
-  return {
-    platos: state.platos,
-  }
-}
-
-export default build({
-  component: Cajero,
-  mapDispatchToProps,
-  mapStateToProps,
-})
+export default Cajero;
