@@ -9,8 +9,9 @@ class LayoutOutApp extends Component {
   async componentDidMount() {
     if (!this.props.auth.rol) {
       const result = await this.props.getUser()
+    }else{
+      this.context.router.push('/app')
     }
-    this.context.router.push('/app')
   }
 
   componentDidUpdate(prevProps) {
@@ -19,7 +20,8 @@ class LayoutOutApp extends Component {
     const isLoggingIn = !prevProps.auth.rol && this.props.auth.rol
     
     if (isLoggingIn) {
-      this.context.router.push('/app')
+      console.log(this.props.auth.rol.toLowerCase())  
+      this.context.router.push('/app/'+this.props.auth.rol.toLowerCase())
     } else if (isLoggingOut) {
       this.context.router.push('/')
     }

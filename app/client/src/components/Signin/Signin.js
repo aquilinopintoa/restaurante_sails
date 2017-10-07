@@ -31,9 +31,9 @@ export default class Signin extends Component {
   }
 
   async login() {
-    await this.props.login(this.state.loginData)
-    console.log(this.context)
-    this.context.router.push('/app')
+    this.props.login(this.state.loginData, (err, result) => {
+      // callback winner
+    })
   }
 
   save(value, field, context) {

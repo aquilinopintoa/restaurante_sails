@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import FlatButton from 'material-ui/FlatButton'
 import {
   Card, 
   CardActions, 
@@ -10,6 +9,7 @@ import {
   CardText
 } from 'material-ui/Card'
 import {List, ListItem} from 'material-ui/List'
+import FlatButton from 'material-ui/FlatButton';
 
 class UserInfo extends Component {
 
@@ -36,9 +36,17 @@ class UserInfo extends Component {
           this.props.user.rol ?
             <Card style={styles.showOrder}>
               <CardHeader
-                title="User"
+                title={this.props.user.rol}
                 subtitle={this.props.user.email}
               />
+              <CardActions>
+                <FlatButton
+                  label="Logout"
+                  labelPosition="before"
+                  primary={true}
+                  onClick={this.props.handlerLogout}
+                />
+              </CardActions>
             </Card>
             :
             null

@@ -18,26 +18,41 @@ class Layout extends Component {
     const { dispatch } = this.props
     const isLoggingOut = prevProps.auth.rol && !this.props.auth.rol
     const isLoggingIn = !prevProps.auth.rol && this.props.auth.rol
-    console.log("paso >>>>>", this.props.auth, isLoggingOut, isLoggingIn)
     if (isLoggingIn) {
       this.context.router.push('/app')
     } else if (isLoggingOut) {
       this.context.router.push('/')
     }
   }
+
+  async handlerLogout() {
+      await this.props.logout()
+  }
   
   render() {
+    const styles = {
+      userInfoContent: {
+        display: "flex",
+        justifyContent: "flex-end",
+        margin: "15px 0"
+      }
+    }
     return (
       <div>
-        <UserInfo user={this.props.auth}/>
-        <MainMenu />
+        <div style={styles.userInfoContent}>
+          <UserInfo 
+            user={this.props.auth}
+            handlerLogout={this.handlerLogout.bind(this)}/>
+        </div>
         {this.props.children}
       </div>
     )
   }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  logout: actions.auth.logout
+}
 
 const mapStateToProps = state => {
   return {

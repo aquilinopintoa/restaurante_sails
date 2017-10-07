@@ -16,20 +16,7 @@ import Admin from '../../components/Admin'
 import Chef from '../../components/Chef'
 import Signin from '../../components/Signin'
 
-
 import store from '../../store'
-
-function loggedIn() {
-  return true
-}
-
-function requireAuth(nextState, replace) {
-  if (!loggedIn()) {
-    replace({
-      pathname: '/signin'
-    })
-  }
-}
 
 export default class App extends Component {
   render() {
@@ -37,7 +24,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <Route path="/app" component={Layout} onEnter={requireAuth}>
+          <Route path="/app" component={Layout}>
             <IndexRoute name="home" component={Home} />
             <Route
               name="cajero"

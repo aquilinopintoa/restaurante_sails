@@ -24,13 +24,12 @@ module.exports = {
 
   login: function(req, res){
     const params = req.params.all()
-    console.log(params)
     Users.findOne({
       email: params.email
     }).exec(function(err, user){
       if(err || !user){
         console.log("err login")
-        return res.json({error:err })
+        return res.json({error:'Email or Password invalid'})
       }
 
       if(user.password != params.password){
@@ -42,6 +41,11 @@ module.exports = {
 
       return res.json(user)
     })
+  },
+
+  logout: function(req, res){
+    req.session.authenticated = undefined
+    return res.json({status: true})
   }
 	
 };

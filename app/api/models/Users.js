@@ -26,7 +26,7 @@ module.exports = {
       enum: [
         'CAJERO',
         'CHEF',
-        'MESONERO'
+        'ADMIN'
       ],
       required: true
     }
@@ -38,11 +38,22 @@ module.exports = {
       cb = () => {}
     }
 
-    const userData = {
-      email: 'aquilinopintoa@gmail.com',
-      password: '20220546',
-      rol: 'CHEF'
-    }
+    const userData = [
+      {
+        email: 'chef@gmail.com',
+        password: '1234',
+        rol: 'CHEF'
+      },{
+        email: 'cajero@gmail.com',
+        password: '1234',
+        rol: 'CAJERO'
+      },{
+        email: 'admin@gmail.com',
+        password: '1234',
+        rol: 'ADMIN'
+      }
+      
+    ]
 
     Users.findOrCreate(userData, userData, function(err, user){
       if(err){
