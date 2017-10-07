@@ -8,7 +8,6 @@
 module.exports = {
 
   get: function(req, res){
-
     return res.json(req.session.authenticated)
   },
 
@@ -20,6 +19,10 @@ module.exports = {
       }
       return res.json(users)
     })
+  },
+
+  create: function(req, res){
+    console.log("por implementar")
   },
 
   login: function(req, res){

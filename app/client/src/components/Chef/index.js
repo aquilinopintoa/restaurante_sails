@@ -82,6 +82,9 @@ class Chef extends Component {
         width: "60%",
         margin: "0 20px",
         display: "inline-block"
+      },
+      total:{
+        textAlign: "right"
       }
     }
     const ordersSorted = _.orderBy(this.props.orders, ['createdAt'], ['desc'])
@@ -128,8 +131,8 @@ class Chef extends Component {
           this.state.selectedOrder ?
             <Card style={styles.showOrder}>
               <CardHeader
-                title="Order"
-                subtitle={this.state.selectedOrder.id}
+                title="Order Detail"
+                subtitle={'Number ' + this.state.selectedOrder.id}
               />
               <CardTitle 
                 title={this.state.selectedOrder.client_name} 
@@ -151,16 +154,23 @@ class Chef extends Component {
                   }
                 </List>
               </CardText>
-            
-              <CardActions>
-                <FlatButton label="TERMINADO" onClick={()=> this.updateOrder("TERMINADO")}/>
-                { 
-                  this.state.selectedOrder.state !== "EN PROCESO" ? 
-                    <FlatButton label="EN PROCESO" onClick={()=> this.updateOrder("EN PROCESO")}/>
-                    :
-                    null
-                }
-              </CardActions>
+              <CardText style={styles.total}>
+                {"Total " + this.state.selectedOrder.total + '$'}
+              </CardText>
+              {
+                !this.props.noActions ? 
+                  <CardActions>
+                    <FlatButton label="TERMINADO" onClick={()=> this.updateOrder("TERMINADO")}/>
+                    { 
+                      this.state.selectedOrder.state !== "EN PROCESO" ? 
+                        <FlatButton label="EN PROCESO" onClick={()=> this.updateOrder("EN PROCESO")}/>
+                        :
+                        null
+                    }
+                  </CardActions>
+                  :
+                  null
+              }
             </Card>
             :
             null
