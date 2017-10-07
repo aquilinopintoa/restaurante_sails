@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+
 import {List, ListItem} from 'material-ui/List'
 import {
   Card, 
@@ -16,6 +17,10 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+
+import ValidateInput from '../../common/util/ValidateInput'
+
+console.log(ValidateInput)
 
 export default class Signin extends Component {
   constructor(props, context) {
