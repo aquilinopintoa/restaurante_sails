@@ -42,7 +42,6 @@ class Chef extends Component {
   async updateOrder(value) {
     const orderData = _.clone(this.state.selectedOrder)
     orderData.state = value
-    console.log(orderData)
     await this.props.updateOrder(orderData)
     this.setState({
       selected: [],

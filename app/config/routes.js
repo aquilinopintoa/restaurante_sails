@@ -32,8 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'get /api/users': 'UsersController.get',
-
+  'get /api/users': 'UsersController.getAll',
+  'get /api/user': 'UsersController.get', // Mejorable para usar /api/users
+  
   'get /api/ordenes': 'OrdenesController.get',
   'put /api/ordenes': 'OrdenesController.update',
   'post /api/ordenes': 'OrdenesController.create',

@@ -32,7 +32,8 @@ export default class Signin extends Component {
 
   async login() {
     await this.props.login(this.state.loginData)
-
+    console.log(this.context)
+    this.context.router.push('/app')
   }
 
   save(value, field, context) {
@@ -98,8 +99,8 @@ export default class Signin extends Component {
   }
 }
 
-// Signin.contextTypes = {
-//   history: React.PropTypes.shape({
-//     push: React.PropTypes.func.isRequired
-//   })
-// }
+Signin.contextTypes = {
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  })
+}

@@ -34,15 +34,19 @@ module.exports.policies = {
   * and its actions                                                          *
   *                                                                          *
   ***************************************************************************/
-	// OrdenesController: {
-  //   '*': 'sessionAuth',
-  // },
+	OrdenesController: {
+    '*': 'sessionAuth',
+  },
 
-  // HomeController: {
-  //   'app': 'sessionAuth',
-  // },
+  HomeController: {
+    'app': 'sessionAuth',
+  },
 
-  // PlatosController: {
-  //   '*': 'sessionAuth',
-  // }
+  PlatosController: {
+    '*': 'sessionAuth',
+  },
+
+  UserController: {
+    'get': 'sessionAuth',
+  }
 };

@@ -8,6 +8,11 @@
 module.exports = {
 
   get: function(req, res){
+
+    return res.json(req.session.authenticated)
+  },
+
+  getAll: function(req, res){
     Users.find(req.query, function(err, users){
       if(err){
         console.log(err)
@@ -33,7 +38,7 @@ module.exports = {
         return res.json({error:'Email or Password invalid'})
       }
 
-      req.session.authenticated = true
+      req.session.authenticated = user
 
       return res.json(user)
     })

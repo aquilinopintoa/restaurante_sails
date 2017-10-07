@@ -16,6 +16,7 @@ import Admin from '../../components/Admin'
 import Chef from '../../components/Chef'
 import Signin from '../../components/Signin'
 
+
 import store from '../../store'
 
 function loggedIn() {
@@ -66,3 +67,4 @@ export default class App extends Component {
     )
   }
 }
+

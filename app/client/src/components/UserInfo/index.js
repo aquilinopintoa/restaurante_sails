@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { build, actions } from '../../container_helpers'
 import FlatButton from 'material-ui/FlatButton'
 import {
   Card, 
@@ -14,13 +13,6 @@ import {List, ListItem} from 'material-ui/List'
 
 class UserInfo extends Component {
 
-  constructor() {
-    super()
-    this.state = {
-      selected: [],
-      selectedOrder: undefined
-    }
-  }
   render() {
     const styles = {
       content: {
@@ -41,11 +33,11 @@ class UserInfo extends Component {
       <div style={styles.content}>
 
         {
-          this.props.auth.rol ?
+          this.props.user.rol ?
             <Card style={styles.showOrder}>
               <CardHeader
                 title="User"
-                subtitle={this.props.auth.email}
+                subtitle={this.props.user.email}
               />
             </Card>
             :
@@ -56,16 +48,4 @@ class UserInfo extends Component {
   }
 }
 
-const mapDispatchToProps = {}
-
-const mapStateToProps = state => {
-  return {
-    auth: state.auth,
-  }
-}
-
-export default build({
-  component: UserInfo,
-  mapDispatchToProps,
-  mapStateToProps,
-})
+export default UserInfo;
