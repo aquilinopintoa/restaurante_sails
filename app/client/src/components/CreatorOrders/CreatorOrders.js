@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import {List, ListItem} from 'material-ui/List'
 
-import Checkbox from 'material-ui/Checkbox';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Checkbox from 'material-ui/Checkbox'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
+import ValidateInput from '../../common/ValidateInput'
 
 export default class CreatorOrders extends Component {
   constructor(props) {

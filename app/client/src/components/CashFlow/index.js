@@ -67,6 +67,12 @@ class CashFlow extends Component {
           <div style={styles.textContent}>
             Tdc &nbsp; {sumTDC}
           </div>   
+          <CardActions>
+            <FlatButton 
+              primary 
+              label="Refresh"
+              onClick={this.handlerRefresh}/>
+          </CardActions>
       </Card>
     );
   }

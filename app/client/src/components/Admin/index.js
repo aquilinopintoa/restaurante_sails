@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Card, 
-  CardActions, 
-  CardHeader, 
-  CardMedia, 
-  CardTitle, 
-  CardText
-} from 'material-ui/Card'
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 import CashFlow from '../CashFlow'
 import Chef from '../Chef'
@@ -21,9 +14,10 @@ class Admin extends Component {
 
   render() {
     const styles = {
-      header: {
+      CashFlow: {
         display: 'flex',
-        margin: "20px"
+        margin: "20px",
+        justifyContent: "center"
       },
       ordersContent: {
         margin: "30px 0px"
@@ -31,14 +25,29 @@ class Admin extends Component {
     }
     return (
       <div>
-          <div style={styles.header}>
-            <CashFlow/>
-          </div>
-
-          <div style={styles.ordersContent}>
-            <Chef noActions/>
-          </div>
-          
+        <Tabs>
+          <Tab label="Cash Flow" >
+            <div style={styles.CashFlow}>
+              <CashFlow/>
+            </div>
+          </Tab>
+          <Tab label="Orders" >
+            <div style={styles.ordersContent}>
+              <Chef noActions/>
+            </div>
+          </Tab>
+          <Tab
+            label="Manager Jobs"
+            data-route="/home"
+          >
+            <div>
+              <h2>JOBS</h2>
+              <p>
+                .
+              </p>
+            </div>
+          </Tab>
+        </Tabs>          
       </div>
     );
   }
