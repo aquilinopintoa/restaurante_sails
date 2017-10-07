@@ -21,6 +21,7 @@ export default class Signin extends Component {
   constructor(props, context) {
     super(props)
     this.state = { 
+      errors: {},
       loginData: { 
         email: '',
         password: '',
@@ -31,8 +32,10 @@ export default class Signin extends Component {
   }
 
   async login() {
-    this.props.login(this.state.loginData, (err, result) => {
-      // callback winner
+    this.props.login(this.state.loginData, (err) => {
+      if(err){
+        console.log("error", err)
+      }
     })
   }
 
@@ -70,6 +73,7 @@ export default class Signin extends Component {
                   <div >
                     <TextField
                       hintText="Email"
+                      error={this.state.errors.email}
                       floatingLabelText="Email"
                       onChange={(event, value) => this.save(value,"email")}
                     />
@@ -77,6 +81,7 @@ export default class Signin extends Component {
                       hintText="Password"
                       floatingLabelText="Password"
                       type="password"
+                      error={this.state.errors.password}
                       onChange={(event, value) => this.save(value,"password")}
                     />
                     <div style={{width:"100%"}}>

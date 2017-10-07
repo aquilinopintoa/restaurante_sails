@@ -48,12 +48,14 @@
     "sails-postgresql": "^0.11.4",
     "style-loader": "0.18.2",
     "url-loader": "^0.5.9",
+    "validator": "^9.0.0",
     "webpack": "^3.6.0"
   },
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "dev": "node app.js dev"
+    "dev": "node app.js dev",
+    "client-test": "jest"
   },
   "main": "app.js",
   "repository": {
