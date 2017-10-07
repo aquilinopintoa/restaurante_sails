@@ -40,15 +40,15 @@ module.exports = {
 
     const userData = [
       {
-        email: 'chef@gmail.com',
+        email: 'chef@tektonlab.com',
         password: '1234',
         rol: 'CHEF'
       },{
-        email: 'cajero@gmail.com',
+        email: 'cajero@tektonlab.com',
         password: '1234',
         rol: 'CAJERO'
       },{
-        email: 'admin@gmail.com',
+        email: 'admin@tektonlab.com',
         password: '1234',
         rol: 'ADMIN'
       }
