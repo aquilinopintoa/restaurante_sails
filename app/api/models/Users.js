@@ -5,6 +5,8 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
+const bcrypt = require('bcrypt')
+
 module.exports = {
 
   attributes: {
@@ -31,6 +33,20 @@ module.exports = {
       required: true
     }
   },
+
+  beforeCreate: function(user, cb) {
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(user.password, salt, function(err, hash) {
+          if(err) {
+              console.log(err);
+              cb(err);
+          } else {
+              user.password = hash;
+              cb(null, user);
+          }
+        });
+    });
+  },
   
   loadDefault: function(cb){
     
@@ -38,24 +54,20 @@ module.exports = {
       cb = () => {}
     }
 
-    const userData = [
+    const userDataSP = [
       {
-        email: 'chef@tektonlab.com',
-        password: '1234',
-        rol: 'CHEF'
-      },{
-        email: 'cajero@tektonlab.com',
-        password: '1234',
-        rol: 'CAJERO'
-      },{
+        email: 'admin@tektonlab.com',
+      }
+    ]
+
+    const userData = [{
         email: 'admin@tektonlab.com',
         password: '1234',
         rol: 'ADMIN'
       }
-      
     ]
 
-    Users.findOrCreate(userData, userData, function(err, user){
+    Users.findOrCreate(userDataSP, userData, function(err, user){
       if(err){
         console.log(err)
         return cb(err)

@@ -33,6 +33,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   'get /api/users': 'UsersController.getAll',
+  'post /api/users': 'UsersController.create',
   'get /api/user': 'UsersController.get', // Mejorable para usar /api/users
   
   'get /api/ordenes': 'OrdenesController.get',

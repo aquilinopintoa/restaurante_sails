@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+const bcrypt = require('bcrypt')
+
 module.exports = {
 
   get: function(req, res){
@@ -22,7 +24,14 @@ module.exports = {
   },
 
   create: function(req, res){
-    console.log("por implementar")
+    var params = req.params.all()
+    Users.create(params, function(err, user) {
+      if(err){
+        return res.json({error:'Error create User'})
+      }
+
+      return res.json(user)
+    })
   },
 
   login: function(req, res){
@@ -35,14 +44,13 @@ module.exports = {
         return res.json({error:'Email or Password invalid'})
       }
 
-      if(user.password != params.password){
-        console.log('Email or Password invalid')
-        return res.json({error:'Email or Password invalid'})
-      }
-
-      req.session.authenticated = user
-
-      return res.json(user)
+      bcrypt.compare(params.password, user.password, function(err, result) {
+        if(!result) return res.json({error: 'Email or Password invalid'});
+        
+        req.session.authenticated = user
+        
+        return res.json(user)
+      });
     })
   },
 

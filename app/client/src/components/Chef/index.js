@@ -100,8 +100,8 @@ class Chef extends Component {
                 <TableRow>
                   <TableHeaderColumn>Total</TableHeaderColumn>
                   <TableHeaderColumn>Client Name</TableHeaderColumn>
-                  <TableHeaderColumn>Status</TableHeaderColumn>
                   <TableHeaderColumn>Date</TableHeaderColumn>
+                  <TableHeaderColumn>Status</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
               <TableBody

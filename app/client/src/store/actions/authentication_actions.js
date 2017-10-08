@@ -15,7 +15,7 @@ authActions.login = (data, cb) => ({ axios }) => async dispatch => {
     dispatch(authActions.signin(response.data))
   }
 
-  cb(response.data.error)
+  if(cb) cb(response.data.error)
 }
 
 authActions.logout = (cb) => ({ axios }) => async dispatch => {
@@ -32,7 +32,7 @@ authActions.getUser = (cb) => ({ axios }) => async dispatch => {
   const response = await axios.get('/api/user')
 
   if (!response.data.error) dispatch(authActions.get(response.data))
-  cb(response.data.error)
+  if(cb) cb(response.data.error)
 }
 
 export default authActions

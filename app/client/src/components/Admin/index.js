@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 import CashFlow from '../CashFlow'
+import ManagerJobs from '../ManagerJobs'
 import Chef from '../Chef'
 
 class Admin extends Component {
@@ -38,13 +39,9 @@ class Admin extends Component {
           </Tab>
           <Tab
             label="Manager Jobs"
-            data-route="/home"
           >
             <div>
-              <h2>JOBS</h2>
-              <p>
-                .
-              </p>
+              <ManagerJobs/>
             </div>
           </Tab>
         </Tabs>          
