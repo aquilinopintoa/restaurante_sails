@@ -14,10 +14,10 @@ ordenesActions.getAll = () => ({ axios }) => async dispatch => {
   else dispatch(ordenesActions.get(response.data))
 }
 
-ordenesActions.create = data => ({ axios }) => async dispatch => {
+ordenesActions.create = (data, cb) => ({ axios }) => async dispatch => {
   const response = await axios.post('/api/ordenes', data)
-  if (response.data.error) console.log(response.data.error) 
-  else dispatch(ordenesActions.add(response.data))
+  if (!response.data.error) dispatch(ordenesActions.add(response.data))
+  if (cb) cb(response.data.error)
 }
 
 ordenesActions.update = data => ({ axios }) => async dispatch => {

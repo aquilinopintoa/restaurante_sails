@@ -2,6 +2,11 @@
 import Validator from 'validator'
 import _ from 'lodash'
 
+function notEmpty(value ){
+    return _.isEmpty(value) ? 
+        'Is Required' : undefined 
+}
+
 function notNull(value ){
     return value === undefined || Validator.isEmpty(value) ? 
         'Is Required' : undefined 
@@ -28,6 +33,9 @@ export default function ValidateInput(aplyVals, value) {
         switch (val) {
             case 'NOTNULL':
                 error = notNull(value) 
+                break 
+            case 'NOTEMPTY':
+                error = notEmpty(value) 
                 break 
             case 'EMAIL':
                 error = email(value)

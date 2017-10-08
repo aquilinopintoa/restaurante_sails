@@ -7,13 +7,22 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import Subheader from 'material-ui/Subheader';
 import ValidateInput from '../../common/ValidateInput'
+
+const validations = {
+  platos: ['NOTEMPTY'],
+  client_name: ['NOTNULL'],
+  type_payment: ['NOTNULL'],
+  total: [],
+}
 
 export default class CreatorOrders extends Component {
   constructor(props) {
     super(props)
     this.state = { 
       loading: false,
+      errors: {},
       newOrder: { 
         platos: [],
         client_name: '',
@@ -22,6 +31,8 @@ export default class CreatorOrders extends Component {
     } }
 
     this.reset = this.reset.bind(this)
+    this.createOrder = this.createOrder.bind(this)
+    this.save = this.save.bind(this)
   }
 
   async componentWillMount() {
@@ -29,47 +40,79 @@ export default class CreatorOrders extends Component {
   }
 
   async createOrder() {
+    const statePrev = _.clone(this.state)    
+
+    Object.keys(validations).forEach(function(key){
+      console.log(key, statePrev.newOrder[key])
+      statePrev.errors[key] = ValidateInput(validations[key],statePrev.newOrder[key])
+      !statePrev.errors[key] ? 
+        delete statePrev.errors[key]
+        :
+        null
+    })
+
+    if (!_.isEmpty(statePrev.errors)) {
+      this.setState(statePrev)
+      return
+    }
+
     this.setState({
       loading: true
     })
-    await this.props.createOrder(this.state.newOrder)
-    this.setState({
-      loading: false
+
+    this.props.createOrder(this.state.newOrder, (err) => {
+      if(err){
+        statePrev.errors.async = err
+      }
+      this.reset()
     })
   }
 
   save(value, field, context) {
-    const statePrev = this.state.newOrder
+    const statePrev = _.clone(this.state)
+
     if(field === "platos"){
-      let temp = _.clone(this.state.newOrder.platos)
+      let temp = statePrev.newOrder.platos
       if(context){
         temp.push(value)
       }else{
         temp = _.filter(temp, (id) => {return value !== id})
       }
       value = temp
-      statePrev.total = _.sumBy(value, (id) => {
+      statePrev.newOrder.total = _.sumBy(value, (id) => {
         let plato = _.find(this.props.platos, (plato) => {
           return plato.id === id
         })
         return plato.precio
       })
     }
-    statePrev[field] = value
-    this.setState({ newOrder: statePrev})
+
+    statePrev.newOrder[field] = value
+    statePrev.errors[field] = ValidateInput(validations[field], value)
+    
+    if (statePrev.errors.async) delete statePrev.errors.async 
+
+    !statePrev.errors[field] ? 
+      delete statePrev.errors[field]
+      :
+      null
+    this.setState(statePrev)
   }
 
   reset() {
     // reset checkbox
     this.props.platos.forEach(function(_,index){
-      this.refs['check_'+index].state.switched = false
+      const checkbox = this.refs['check_'+index]
+      if(checkbox) checkbox.state.switched = false
     },this)
     this.setState({
+      loading: false,
+      newOrder: {
       platos: [],
       client_name: '',
       type_payment: '',
       total: 0
-    })
+    }})
   }
 
   render() {
@@ -78,11 +121,15 @@ export default class CreatorOrders extends Component {
         width: "600px",
       },
       listPlatos:{
-        width: "300px",
+        width: "350px",
         display: "inline-block",
+        margin: "0 15px"
+      },
+      list:{
+        width: "300px",
         height: "200px",
         overflow: "auto",
-        margin: "0 15px"
+        margin: "15px 0px"
       },
       form:{
         width: "250px",
@@ -91,6 +138,15 @@ export default class CreatorOrders extends Component {
       },
       button:{
         margin: "10px"
+      },
+      textError:{
+        width: "100%",
+        color: "red",
+        textAlign: "center"
+      },
+      total:{
+        width: "100%",
+        textAlign: "right"
       }
     }
 
@@ -121,10 +177,19 @@ export default class CreatorOrders extends Component {
                       })
                     }
                   </List>
+                  {
+                    this.state.errors.platos ? 
+                      <div style={styles.textError}>
+                        {this.state.errors.platos}
+                      </div>
+                      :
+                      null
+                  }
                 </div>
                 <div style={styles.form}>
                   <SelectField
                     value={this.state.newOrder.type_payment}
+                    errorText={this.state.errors.type_payment}
                     onChange={(event, key, value) => this.save(value,"type_payment")}
                     floatingLabelText="Payment method"
                   >
@@ -134,15 +199,12 @@ export default class CreatorOrders extends Component {
                   <TextField
                     hintText="Client Name"
                     floatingLabelText="Client Name"
+                    errorText={this.state.errors.client_name}
                     onChange={(event, value) => this.save(value,"client_name")}
                   />
-                  <TextField
-                    hintText="Total"
-                    disabled
-                    inputStyle={{textAlign:"right"}}
-                    floatingLabelText="Total"
-                    value={this.state.newOrder.total}
-                  />
+                  <Subheader style={styles.total}>
+                    {"Total "+this.state.newOrder.total+" $"}
+                  </Subheader>
                   <RaisedButton 
                     label="Create" 
                     primary={true} 
