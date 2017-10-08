@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import React, { Component } from 'react'
+import {Tabs, Tab} from 'material-ui/Tabs'
 
 import CashFlow from '../CashFlow'
 import ManagerJobs from '../ManagerJobs'

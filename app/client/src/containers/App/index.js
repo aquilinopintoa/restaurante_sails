@@ -10,7 +10,6 @@ import {
 import { syncHistoryWithStore } from 'react-router-redux'
 import Layout from '../../components/Layout'
 import LayoutOutApp from '../../components/LayoutOutApp'
-import Home from '../../components/Home'
 import Cajero from '../../components/Cajero'
 import Admin from '../../components/Admin'
 import Chef from '../../components/Chef'

@@ -7,7 +7,7 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import Subheader from 'material-ui/Subheader';
+import Subheader from 'material-ui/Subheader'
 import {
     Card, 
     CardActions, 

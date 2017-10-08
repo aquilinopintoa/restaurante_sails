@@ -9,7 +9,7 @@ import {
   CardText
 } from 'material-ui/Card'
 import {List, ListItem} from 'material-ui/List'
-import FlatButton from 'material-ui/FlatButton';
+import FlatButton from 'material-ui/FlatButton'
 
 class UserInfo extends Component {
 
