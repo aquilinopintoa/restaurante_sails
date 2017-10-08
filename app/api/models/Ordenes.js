@@ -20,16 +20,16 @@ module.exports = {
       type: 'string',
       enum: [
         'TDC',
-        'EFECTIVO'
+        'CASH'
       ],
       required: true
     },
     state: {
       type: 'string',
       enum: [
-        'COMANDA',
-        'TERMINADO',
-        'EN PROCESO'
+        'COMMAND',
+        'FINISHED',
+        'IN PROCESS'
       ],
       required: true
     },

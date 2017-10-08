@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import UserInfo from '../UserInfo'
-import MainMenu from '../MainMenu/MainMenu'
 
 import { build, actions } from '../../container_helpers'
 

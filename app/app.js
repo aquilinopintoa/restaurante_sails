@@ -60,7 +60,7 @@ try {
 
 function startProdServer(){
   var compiler = webpack(webpackConfig);
-  compiler.run();
+  compiler.run(() => {});
 }
 
 function startDevServer(){

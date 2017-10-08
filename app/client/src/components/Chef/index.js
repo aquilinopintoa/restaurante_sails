@@ -112,7 +112,7 @@ class Chef extends Component {
                     return (
                       <TableRow 
                         key={order.id}
-                        selectable = {order.state !== "TERMINADO"}
+                        selectable
                         selected={this.isSelected(index)}
                       >
                         <TableRowColumn>{order.total+" $"}</TableRowColumn>
@@ -158,12 +158,18 @@ class Chef extends Component {
                 {"Total " + this.state.selectedOrder.total + '$'}
               </CardText>
               {
-                !this.props.noActions ? 
+                this.state.selectedOrder.state !== "FINISHED" && !this.props.noActions ? 
                   <CardActions>
-                    <FlatButton label="TERMINADO" onClick={()=> this.updateOrder("TERMINADO")}/>
+                    <FlatButton 
+                      primary
+                      label="FINISHED" 
+                      onClick={()=> this.updateOrder("FINISHED")}/>
                     { 
-                      this.state.selectedOrder.state !== "EN PROCESO" ? 
-                        <FlatButton label="EN PROCESO" onClick={()=> this.updateOrder("EN PROCESO")}/>
+                      this.state.selectedOrder.state !== "IN PROCESS" ? 
+                        <FlatButton 
+                          label="IN PROCESS" 
+                          primary
+                          onClick={()=> this.updateOrder("IN PROCESS")}/>
                         :
                         null
                     }

@@ -25,7 +25,6 @@ export default class App extends Component {
       <Provider store={store}>
         <Router history={history}>
           <Route path="/app" component={Layout}>
-            <IndexRoute name="home" component={Home} />
             <Route
               name="cajero"
               path="/app/cajero"

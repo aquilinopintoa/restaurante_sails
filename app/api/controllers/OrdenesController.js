@@ -9,7 +9,7 @@ module.exports = {
 
     create: function(req, res){
         const params = req.params.all()
-        params.state = 'COMANDA'
+        params.state = 'COMMAND'
         Ordenes.create(params, function(err, orden){
             if(err){
                 console.log(err)

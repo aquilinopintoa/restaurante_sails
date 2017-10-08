@@ -43,7 +43,6 @@ export default class CreatorOrders extends Component {
     const statePrev = _.clone(this.state)    
 
     Object.keys(validations).forEach(function(key){
-      console.log(key, statePrev.newOrder[key])
       statePrev.errors[key] = ValidateInput(validations[key],statePrev.newOrder[key])
       !statePrev.errors[key] ? 
         delete statePrev.errors[key]
@@ -194,7 +193,7 @@ export default class CreatorOrders extends Component {
                     floatingLabelText="Payment method"
                   >
                       <MenuItem key={1} value={"TDC"} primaryText="TDC" />
-                      <MenuItem key={2} value={"EFECTIVO"} primaryText="EFECTIVO" />
+                      <MenuItem key={2} value={"CASH"} primaryText="CASH" />
                   </SelectField>
                   <TextField
                     hintText="Client Name"
