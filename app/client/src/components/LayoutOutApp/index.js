@@ -8,7 +8,11 @@ class LayoutOutApp extends Component {
 
   async componentDidMount() {
     if (!this.props.auth.rol) {
-      const result = await this.props.getUser()
+      this.props.getUser((err)=> {
+        if(!err){
+          this.context.router.push('/app/'+this.props.auth.rol.toLowerCase())
+        }
+      })
     }else{
       this.context.router.push('/app')
     }
