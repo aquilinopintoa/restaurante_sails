@@ -10,7 +10,10 @@ class Layout extends Component {
   componentDidMount() {
 
     if (!this.props.auth.rol) {
-      this.context.router.push('/')
+      this.props.getUser((err) => {
+        if(err)
+          this.context.router.push('/')
+      })
     }
   }
 
@@ -19,7 +22,7 @@ class Layout extends Component {
     const isLoggingOut = prevProps.auth.rol && !this.props.auth.rol
     const isLoggingIn = !prevProps.auth.rol && this.props.auth.rol
     if (isLoggingIn) {
-      this.context.router.push('/app')
+      this.context.router.push('/app/'+this.props.auth.rol.toLowerCase())
     } else if (isLoggingOut) {
       this.context.router.push('/')
     }
@@ -51,7 +54,8 @@ class Layout extends Component {
 }
 
 const mapDispatchToProps = {
-  logout: actions.auth.logout
+  logout: actions.auth.logout,
+  getUser: actions.auth.getUser
 }
 
 const mapStateToProps = state => {

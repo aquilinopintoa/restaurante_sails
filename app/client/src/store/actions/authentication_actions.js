@@ -28,11 +28,11 @@ authActions.logout = (cb) => ({ axios }) => async dispatch => {
   if(cb) cb(response.data.error)
 }
 
-authActions.getUser = () => ({ axios }) => async dispatch => {
+authActions.getUser = (cb) => ({ axios }) => async dispatch => {
   const response = await axios.get('/api/user')
-  console.log("aquilino", response)
-  if (response.data.error) return response.data.error
-  else dispatch(authActions.get(response.data))
+
+  if (!response.data.error) dispatch(authActions.get(response.data))
+  cb(response.data.error)
 }
 
 export default authActions

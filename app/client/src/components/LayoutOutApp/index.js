@@ -20,7 +20,6 @@ class LayoutOutApp extends Component {
     const isLoggingIn = !prevProps.auth.rol && this.props.auth.rol
     
     if (isLoggingIn) {
-      console.log(this.props.auth.rol.toLowerCase())  
       this.context.router.push('/app/'+this.props.auth.rol.toLowerCase())
     } else if (isLoggingOut) {
       this.context.router.push('/')
