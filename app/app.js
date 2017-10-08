@@ -60,9 +60,7 @@ try {
 
 function startProdServer(){
   var compiler = webpack(webpackConfig);
-  compiler.run(, function(err, stats) {
-    console.log("change client code")
-  });
+  compiler.run();
 }
 
 function startDevServer(){
