@@ -17,8 +17,8 @@ function email(value){
 }
 
 function tektonlab(value){
-    return value.toLowerCase().indexOf('@tektonlab') < 0 ?
-        'only tektonlab domain'
+    return value.toLowerCase().indexOf('@tektonlabs') < 0 ?
+        'only tektonlabs domain'
         :
         undefined
 }

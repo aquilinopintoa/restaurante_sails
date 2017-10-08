@@ -58,6 +58,13 @@ try {
   }
 }
 
+function startProdServer(){
+  var compiler = webpack(webpackConfig);
+  compiler.run(, function(err, stats) {
+    console.log("change client code")
+  });
+}
+
 function startDevServer(){
   var compiler = webpack(webpackConfig);
   compiler.watch({
@@ -71,6 +78,8 @@ function startDevServer(){
 function startServer(){
   if(process.argv.length > 2 && process.argv[2] === 'dev'){
     startDevServer()
+  }else{
+    startProdServer()
   }
 
   // Start server
