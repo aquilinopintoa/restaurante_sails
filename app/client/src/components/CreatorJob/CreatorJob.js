@@ -36,7 +36,6 @@ export default class CreatorJob extends Component {
         password: ''
     } }
 
-    this.reset = this.reset.bind(this)
     this.createJob = this.createJob.bind(this)
     this.save = this.save.bind(this)
   }
@@ -86,16 +85,6 @@ export default class CreatorJob extends Component {
     this.setState(statePrev)
   }
 
-  reset() {
-    this.setState({
-      loading: false,
-      newUser: {
-        email: '',
-        password: '',
-        rol: '',
-    }})
-  }
-
   render() {
     const styles = {
       content: {
@@ -124,41 +113,40 @@ export default class CreatorJob extends Component {
                     !this.state.loading ? 
                     <div style={{display:'flex'}}>
                         <div style={styles.form}>
-                        <SelectField
-                            value={this.state.newUser.rol}
-                            errorText={this.state.errors.rol}
-                            onChange={(event, key, value) => this.save(value,"rol")}
-                            floatingLabelText="Rol"
-                        >
-                            <MenuItem key={1} value={"ADMIN"} primaryText="ADMIN" />
-                            <MenuItem key={2} value={"CAJERO"} primaryText="CAJERO" />
-                            <MenuItem key={3} value={"CHEF"} primaryText="CHEF" />
-                        </SelectField>
-                        <TextField
-                            hintText="Email"
-                            floatingLabelText="Email"
-                            errorText={this.state.errors.email}
-                            onChange={(event, value) => this.save(value,"email")}
-                        />
-                        <TextField
-                            type={"password"}
-                            hintText="Password"
-                            floatingLabelText="Password"
-                            errorText={this.state.errors.password}
-                            onChange={(event, value) => this.save(value,"password")}
-                        />
-                        <RaisedButton 
-                            label="Create" 
-                            primary={true} 
-                            style={styles.button} 
-                            onClick={() => this.createJob()}
-                        />
-                        <RaisedButton 
-                            label="Reset" 
-                            primary={true} 
-                            style={styles.button} 
-                            onClick={() => this.reset()}
-                        />
+                          <SelectField
+                              value={this.state.newUser.rol}
+                              errorText={this.state.errors.rol}
+                              onChange={(event, key, value) => this.save(value,"rol")}
+                              floatingLabelText="Rol"
+                          >
+                              <MenuItem key={1} value={"ADMIN"} primaryText="ADMIN" />
+                              <MenuItem key={2} value={"CAJERO"} primaryText="CAJERO" />
+                              <MenuItem key={3} value={"CHEF"} primaryText="CHEF" />
+                          </SelectField>
+                          <TextField
+                              hintText="Email"
+                              floatingLabelText="Email"
+                              errorText={this.state.errors.email}
+                              onChange={(event, value) => this.save(value,"email")}
+                          />
+                          <TextField
+                              type={"password"}
+                              hintText="Password"
+                              floatingLabelText="Password"
+                              errorText={this.state.errors.password}
+                              onChange={(event, value) => this.save(value,"password")}
+                          />
+                          <div style={{
+                            display:"flex",
+                            justifyContent: "center"
+                          }}>
+                            <RaisedButton 
+                                label="Create" 
+                                primary={true} 
+                                style={styles.button} 
+                                onClick={() => this.createJob()}
+                            />
+                          </div>
                         </div>
                     </div>
                     :

@@ -9,7 +9,7 @@ class LayoutOutApp extends Component {
   async componentDidMount() {
     if (!this.props.auth.rol) {
       this.props.getUser((err)=> {
-        if(!err){
+        if(!err && this.props.auth.rol){
           this.context.router.push('/app/'+this.props.auth.rol.toLowerCase())
         }
       })
