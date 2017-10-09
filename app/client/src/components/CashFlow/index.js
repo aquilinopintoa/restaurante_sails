@@ -17,7 +17,8 @@ class CashFlow extends Component {
   constructor() {
     super()
     this.state = {
-      loading: false
+      loading: false,
+      updateDate: new Date()
     }
     this.handlerRefresh = this.handlerRefresh.bind(this)
   }
@@ -29,6 +30,16 @@ class CashFlow extends Component {
 
   async handlerRefresh() {
     await this.props.getAllOrders()
+    this.setState({
+      updateDate: new Date()
+    })
+  }
+
+  getFormat(dateRaw){
+    const date = new Date(dateRaw)
+    const formatDate = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()
+    const formatHour = date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
+    return formatDate + ' ' + formatHour
   }
 
   render() {
@@ -56,7 +67,7 @@ class CashFlow extends Component {
       <Card style={styles.CashFlowContent}>
           <CardHeader
               title="Cash Flow"
-              subtitle={"last update: 10/11/2017 00:00:00"}
+              subtitle={"last update: "+this.getFormat(this.state.updateDate)}
           />
           <CardTitle 
               style={styles.textContent}
